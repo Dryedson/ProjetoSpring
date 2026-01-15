@@ -1,6 +1,9 @@
-package dev.dryedson.CadastroDeNinja;
+package dev.dryedson.CadastroDeNinja.Ninjas;
 
+import dev.dryedson.CadastroDeNinja.Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro_de_ninjas")
@@ -8,10 +11,17 @@ public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nome;
-    String email;
-    int idade;
+    private Long id;
+
+    private String nome;
+
+    private String email;
+
+    private int idade;
+
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")
+    private MissoesModel missoes;
 
     public String getNome() {
         return nome;
